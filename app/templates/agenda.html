@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Agenda Médica</title>
+
+    <!-- Bootstrap para estilização da interface -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Biblioteca Tabulator para exibição da tabela -->
+    <link
+      href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS personalizado da aplicação -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/agenda.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Agenda Médica</h2>
+
+        <!-- Encerra a sessão do usuário -->
+        <a href="/logout" class="btn btn-danger"> Sair </a>
+      </div>
+
+      <!-- Exibe uma mensagem caso ocorra erro ao carregar os dados -->
+      {% if error %}
+
+      <div class="alert alert-warning">{{ error }}</div>
+
+      {% else %}
+
+      <!-- Campo de pesquisa da tabela -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <input
+            type="text"
+            id="search-input"
+            class="form-control"
+            placeholder="Pesquisar por paciente, CPF ou médico"
+          />
+        </div>
+      </div>
+
+      <!-- Tabela de agendamentos -->
+      <div id="appointments-table"></div>
+
+      {% endif %}
+    </div>
+
+    <!-- Envia os dados do Flask para o JavaScript -->
+    <script>
+      const APPOINTMENTS = {{ appointments | tojson }};
+    </script>
+
+    <!-- Biblioteca Tabulator -->
+    <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+
+    <!-- JavaScript da aplicação -->
+    <script src="{{ url_for('static', filename='js/agenda.js') }}"></script>
+  </body>
+</html>

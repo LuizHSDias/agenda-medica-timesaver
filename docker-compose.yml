@@ -1,0 +1,27 @@
+services:
+
+  # Aplicação principal
+  web:
+    build: .
+    container_name: agenda-web
+
+    ports:
+      - "5000:5000"
+
+    # Variáveis de ambiente utilizadas pela aplicação
+    environment:
+      API_URL: http://mock-api:5001/appointments
+
+    # Garante que a Mock API seja iniciada antes da aplicação
+    depends_on:
+      - mock-api
+
+  # Serviço da Mock API
+  mock-api:
+    build:
+      context: ./mock_api
+
+    container_name: agenda-mock-api
+
+    ports:
+      - "5001:5001"

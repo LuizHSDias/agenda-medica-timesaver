@@ -1,0 +1,22 @@
+# Ambiente virtual
+.venv/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+
+# Arquivos de cache do pytest
+.pytest_cache/
+
+# Banco de dados SQLite
+instance/agenda.db
+
+# Variáveis de ambiente
+.env
+
+# Arquivos do VS Code
+.vscode/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
