@@ -5,11 +5,12 @@
 __pycache__/
 *.py[cod]
 
-# Arquivos de cache do pytest
+# Cache do pytest
 .pytest_cache/
 
 # Banco de dados SQLite
-instance/agenda.db
+instance/
+*.db
 
 # Variáveis de ambiente
 .env

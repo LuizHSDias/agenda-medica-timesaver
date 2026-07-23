@@ -2,7 +2,7 @@
 
 Sistema web desenvolvido como solução para o desafio técnico da **TimeSaver**.
 
-A aplicação permite que um usuário autenticado visualize uma agenda médica por meio da integração com uma API HTTP simulada. Os agendamentos são apresentados em uma tabela utilizando a biblioteca Tabulator, com funcionalidades de pesquisa e tratamento de cenários de erro.
+A aplicação permite que um usuário autenticado visualize uma agenda médica por meio da integração com uma API HTTP simulada. Os agendamentos são apresentados em uma tabela utilizando a biblioteca **Tabulator**, com funcionalidades de pesquisa e tratamento de cenários de erro.
 
 ---
 
@@ -66,7 +66,8 @@ agenda-medica-timesaver/
 │
 ├── tests/
 │   ├── conftest.py
-│   └── test_auth.py
+│   ├── test_auth.py
+│   └── test_appointment_service.py
 │
 ├── Dockerfile
 ├── docker-compose.yml
@@ -91,7 +92,19 @@ cd agenda-medica-timesaver
 
 ## Criar o arquivo `.env`
 
-Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+Utilize o arquivo `.env.example` como base.
+
+### Linux/macOS
+
+```bash
+cp .env.example .env
+```
+
+### Windows
+
+Copie o arquivo `.env.example`, renomeie a cópia para `.env` e utilize esse arquivo na execução da aplicação.
+
+Conteúdo esperado:
 
 ```env
 SECRET_KEY=dev-secret-key
@@ -248,11 +261,12 @@ python -m pytest -v
 Resultado esperado:
 
 ```text
+tests/test_appointment_service.py::test_api_indisponivel PASSED
 tests/test_auth.py::test_login_valido PASSED
 tests/test_auth.py::test_login_invalido PASSED
 ```
 
-Os testes utilizam um banco SQLite em memória, garantindo isolamento entre as execuções.
+Os testes utilizam um banco SQLite em memória para garantir isolamento entre as execuções.
 
 ---
 
@@ -284,5 +298,3 @@ Durante o desenvolvimento foram adotadas algumas decisões para melhorar a organ
 # Autor
 
 **Luiz Henrique Santos Dias**
-
-GitHub: https://github.com/LuizHSDias
